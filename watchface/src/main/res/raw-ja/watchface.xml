@@ -74,10 +74,10 @@
                     <Font family="monospace" size="24" color="#adadad"> ] </Font>
                     <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FFFF00">
                         <Template>
-                            <![CDATA[%S %S %d %d]]>
-                            <Parameter expression="[DAY_OF_WEEK_S]"/>
-                            <Parameter expression="[MONTH_S]"/>
+                            <![CDATA[%S %d日%S%d年]]>
+                            <Parameter expression="[DAY_OF_WEEK_F]"/>
                             <Parameter expression="[DAY]"/>
+                            <Parameter expression="[MONTH_S]"/>
                             <Parameter expression="[YEAR]"/>
                         </Template>
                     </Font>
@@ -178,27 +178,13 @@
                             <PartText height="30" width="410" x="0" y="0">
                                 <Text align="START">
                                     <Font family="monospace" size="20" color="#00FFFF">
-                                        <Template><![CDATA[%d⬇️%d⬆️%d%s %d%%🌧️ ]]>
+                                        <Template><![CDATA[%d⬇️%d⬆️%d%s %d%%🌧️ %S]]>
                                             <Parameter expression='[WEATHER.DAYS.0.TEMPERATURE_LOW]'/>
                                             <Parameter expression='[WEATHER.TEMPERATURE]'/>
                                             <Parameter expression='[WEATHER.DAYS.0.TEMPERATURE_HIGH]'/>
                                             <Parameter expression='[WEATHER.TEMPERATURE_UNIT] == 1 ? "C" : "F"'/>
                                             <Parameter expression='[WEATHER.DAYS.0.CHANCE_OF_PRECIPITATION]'/>
-                                        </Template>
-                                        <Template><![CDATA[%s]]>
-                                            <Parameter expression='
-                                            [WEATHER.CONDITION] == 0 ? "UNK" :
-                                            [WEATHER.CONDITION] == 1 ? "Clr" :
-                                            [WEATHER.CONDITION] == 2 ? "Cldy" :
-                                            [WEATHER.CONDITION] == 4 ? "HvRn" :
-                                            [WEATHER.CONDITION] == 5 ? "HvSnw" :
-                                            [WEATHER.CONDITION] == 8 ? "Snny" :
-                                            [WEATHER.CONDITION] == 9 ? "Strm" :
-                                            [WEATHER.CONDITION] == 11 ? "LtSnw" :
-                                            [WEATHER.CONDITION] == 12 ? "LtRn" :
-                                            [WEATHER.CONDITION] == 14 ? "PtCld" :
-                                            [WEATHER.CONDITION] == 15 ? "Wind" :
-                                        [WEATHER.CONDITION_NAME]'/>
+                                            <Parameter expression='[WEATHER.CONDITION_NAME]'/>
                                         </Template>
                                     </Font>
                                 </Text>
@@ -231,7 +217,7 @@
                     <Font family="monospace" size="24" color="#adadad"> ] </Font>
                     <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#abc4f2">
                         <Template>
-                            <![CDATA[%d steps]]>
+                            <![CDATA[%d ステップ]]>
                             <Parameter expression="[STEP_COUNT]"/>
                         </Template>
                     </Font>
