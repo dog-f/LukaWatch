@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<WatchFace width="450" height="450">
+    <Metadata key="CLOCK_TYPE" value="DIGITAL" />
+    <Metadata key="PREVIEW_TIME" value="10:08:32" />
+    <Scene backgroundColor="#360b28">
+        <PartImage x="0" y="0" width="450" height="450">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <Image resource="aimkid"/>
+        </PartImage>
+        <PartImage x="0" y="0" width="450" height="450" alpha="0">
+            <Variant mode="AMBIENT" target="alpha" value="255"/>
+            <Image resource="aimkid_blurry"/>
+        </PartImage>
+        <Group
+            name="TerminalDisplay"
+            x="60"
+            y="80"
+            width="410"
+            height="300">
+            <PartText x="0" y="0" width="410" height="30">
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#00FF00">  luka</Font>
+                    <Font family="monospace" size="24" color="#00FF00">@</Font>
+                    <Font family="monospace" size="24" color="#00FF00">lukawatch  </Font>
+                    <Font family="monospace" size="24" color="#00FF00">~  </Font>
+                </Text>
+            </PartText>
+            <PartImage x="0" y="0" width="30" height="30">
+                <Image resource="paw_prints_color"/>
+            </PartImage>
+            <PartImage x="225" y="0" width="30" height="25">
+                <Image resource="dragon_color"/>
+            </PartImage>
+            <PartText x="0" y="30" width="410" height="30">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#FFFFFF">|   </Font>
+                    <Font family="monospace" size="24" color="#FFFFFF">watch -c ./stats.sh</Font>
+                </Text>
+            </PartText>
+            <PartText x="0" y="30" width="410" height="30" alpha="0">
+                <Variant mode="AMBIENT" target="alpha" value="255"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#FFFFFF">|   </Font>
+                    <Font family="monospace" size="24" color="#FFFFFF">clear</Font>
+                </Text>
+            </PartText>
+            <PartImage x="15" y="33" width="25" height="25">
+                <Image resource="dragon_face_color"/>
+            </PartImage>
+            <PartText x="0" y="60" width="410" height="30" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#adadad">[ </Font>
+                    <Font family="monospace" size="24" color="#00FF00">⌚</Font>
+                    <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FFFF00">
+                        <Template>
+                            <![CDATA[%d:%s:%s %s %s]]>
+                            <Parameter expression="[HOUR_1_12]"/>
+                            <Parameter expression="[MINUTE_Z]"/>
+                            <Parameter expression="[SECOND_Z]"/>
+                            <Parameter expression="[AMPM_STRING]"/>
+                            <Parameter expression="[TIMEZONE_ABB]"/>
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="0" y="90" width="410" height="30" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#adadad">[ </Font>
+                    <Font family="monospace" size="24" color="#00FF00">📅</Font>
+                    <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FFFF00">
+                        <Template>
+                            <![CDATA[%S %S %d %d]]>
+                            <Parameter expression="[DAY_OF_WEEK_S]"/>
+                            <Parameter expression="[MONTH_S]"/>
+                            <Parameter expression="[DAY]"/>
+                            <Parameter expression="[YEAR]"/>
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="0" y="120" width="410" height="30" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#adadad">[ </Font>
+                    <Font family="monospace" size="24" color="#00FF00">
+                        <Template>
+                            <![CDATA[%s]]>
+                            <Parameter expression='[BATTERY_PERCENT] > 20 ? "🔋" : "🪫"'/>
+                        </Template>
+                    </Font>
+                    <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                    <Font family="monospace" size="24" color="#adadad">[</Font>
+                    <!-- Green when battery > 20% -->
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#00FF00">
+                        <Template>
+                            <![CDATA[%s]]>
+                            <Parameter expression='[BATTERY_PERCENT] &gt; 20 ? (
+      [BATTERY_PERCENT] &gt;= 100 ? "##########" :
+      [BATTERY_PERCENT] &gt;= 90  ? "#########." :
+      [BATTERY_PERCENT] &gt;= 80  ? "########.." :
+      [BATTERY_PERCENT] &gt;= 70  ? "#######..." :
+      [BATTERY_PERCENT] &gt;= 60  ? "######...." :
+      [BATTERY_PERCENT] &gt;= 50  ? "#####....." :
+      [BATTERY_PERCENT] &gt;= 40  ? "####......" :
+      [BATTERY_PERCENT] &gt;= 30  ? "###......." :
+                                   "##........" ) : ""'/>
+                        </Template>
+                    </Font>
+                    <!-- Red when battery <= 20% -->
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FF0000">
+                        <Template>
+                            <![CDATA[%s]]>
+                            <Parameter expression='[BATTERY_PERCENT] &lt;= 20 ? (
+      [BATTERY_PERCENT] &gt;= 20  ? "##........" :
+      [BATTERY_PERCENT] &gt;= 10  ? "#........." :
+                                   ".........." ) : ""'/>
+                        </Template>
+                    </Font>
+                    <Font family="monospace" size="24" color="#adadad">] </Font>
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#00FF00">
+                        <Template>
+                            <![CDATA[%s%s]]>
+                            <Parameter expression='[BATTERY_PERCENT] &gt; 20 ? [BATTERY_PERCENT] : ""'/>
+                            <Parameter expression='[BATTERY_PERCENT] &gt; 20 ? "%" : ""'/>
+                        </Template>
+                    </Font>
+                    <!-- Red when battery <= 20% -->
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FF0000">
+                        <Template>
+                            <![CDATA[%s%s]]>
+                            <Parameter expression='[BATTERY_PERCENT] &lt;= 20 ? [BATTERY_PERCENT] : ""'/>
+                            <Parameter expression='[BATTERY_PERCENT] &lt;= 20 ? "%" : ""'/>
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <Group x="0" y="150" width="410" height="30" alpha="255" name="Weather_Condition">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Condition>
+                    <Expressions>
+                        <Expression name="is_weather_available">[WEATHER.IS_AVAILABLE]</Expression>
+                    </Expressions>
+                    <Compare expression="is_weather_available">
+                        <PartText x="0" y="0" width="410" height="30" alpha="255">
+                            <Text align="START">
+                                <Font family="monospace" size="24" color="#adadad">[ </Font>
+                                <Font family="monospace" size="24" color="#00FF00">
+                                    <Template><![CDATA[%s]]>
+                                        <Parameter expression='
+                                            [WEATHER.CONDITION] == 0 ? "❓" :
+                                            [WEATHER.CONDITION] == 1 ? "☀️" :
+                                            [WEATHER.CONDITION] == 2 ? "⛅" :
+                                            [WEATHER.CONDITION] == 3 ? "🌫️" :
+                                            [WEATHER.CONDITION] == 4 ? "🌧️" :
+                                            [WEATHER.CONDITION] == 5 ? "🌨️" :
+                                            [WEATHER.CONDITION] == 6 ? "🌧️" :
+                                            [WEATHER.CONDITION] == 7 ? "🌨️" :
+                                            [WEATHER.CONDITION] == 8 ? "☀️" :
+                                            [WEATHER.CONDITION] == 9 ? "⛈️" :
+                                            [WEATHER.CONDITION] == 10 ? "❄️" :
+                                            [WEATHER.CONDITION] == 11 ? "❄️" :
+                                            [WEATHER.CONDITION] == 12 ? "💦" :
+                                            [WEATHER.CONDITION] == 13 ? "🌫️" :
+                                            [WEATHER.CONDITION] == 14 ? "⛅" :
+                                            [WEATHER.CONDITION] == 15 ? "🍃" :
+                                        ""'/>
+                                    </Template>
+                                </Font>
+                                <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                            </Text>
+                        </PartText>
+                        <Group height="30" name="Weather_Available_View" width="410" x="100" y="0">
+                            <PartText height="30" width="410" x="0" y="0">
+                                <Text align="START">
+                                    <Font family="monospace" size="20" color="#00FFFF">
+                                        <Template><![CDATA[%d⬇️%d⬆️%d%s %d%%🌧️ ]]>
+                                            <Parameter expression='[WEATHER.DAYS.0.TEMPERATURE_LOW]'/>
+                                            <Parameter expression='[WEATHER.TEMPERATURE]'/>
+                                            <Parameter expression='[WEATHER.DAYS.0.TEMPERATURE_HIGH]'/>
+                                            <Parameter expression='[WEATHER.TEMPERATURE_UNIT] == 1 ? "C" : "F"'/>
+                                            <Parameter expression='[WEATHER.DAYS.0.CHANCE_OF_PRECIPITATION]'/>
+                                        </Template>
+                                        <Template><![CDATA[%s]]>
+                                            <Parameter expression='
+                                            [WEATHER.CONDITION] == 0 ? "UNK" :
+                                            [WEATHER.CONDITION] == 1 ? "Clr" :
+                                            [WEATHER.CONDITION] == 2 ? "Cldy" :
+                                            [WEATHER.CONDITION] == 4 ? "HvRn" :
+                                            [WEATHER.CONDITION] == 5 ? "HvSnw" :
+                                            [WEATHER.CONDITION] == 8 ? "Snny" :
+                                            [WEATHER.CONDITION] == 9 ? "Strm" :
+                                            [WEATHER.CONDITION] == 11 ? "LtSnw" :
+                                            [WEATHER.CONDITION] == 12 ? "LtRn" :
+                                            [WEATHER.CONDITION] == 14 ? "PtCld" :
+                                            [WEATHER.CONDITION] == 15 ? "Wind" :
+                                        [WEATHER.CONDITION_NAME]'/>
+                                        </Template>
+                                    </Font>
+                                </Text>
+                            </PartText>
+                        </Group>
+                    </Compare>
+                    <Default>
+                        <PartText x="0" y="0" width="410" height="30" alpha="255">
+                            <Text align="START">
+                                <Font family="monospace" size="24" color="#adadad">[ </Font>
+                                <Font family="monospace" size="24" color="#00FF00">⛅</Font>
+                                <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                            </Text>
+                        </PartText>
+                        <Group height="30" name="Weather_Available_View" width="410" x="100" y="0">
+                            <PartText height="30" width="410" x="0" y="0">
+                                <Text align="START">
+                                    <Font family="SYNC_TO_DEVICE" size="24">undefined</Font>
+                                </Text>
+                            </PartText>
+                        </Group>
+                    </Default>
+                </Condition>
+            </Group>
+            <PartText x="0" y="180" width="410" height="30" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#adadad">[ </Font>
+                    <Font family="monospace" size="24" color="#00FF00">👟</Font>
+                    <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#abc4f2">
+                        <Template>
+                            <![CDATA[%d steps]]>
+                            <Parameter expression="[STEP_COUNT]"/>
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <!-- show only when weather is available -->
+            <PartText x="0" y="210" width="410" height="30" alpha="255">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#adadad">[ </Font>
+                    <Font family="monospace" size="24" color="#00FF00">💛</Font>
+                    <Font family="monospace" size="24" color="#adadad"> ] </Font>
+                    <Font family="monospace" size="24" weight="NORMAL" slant="NORMAL" color="#FF0000">
+                        <Template>
+                            <![CDATA[%d bpm]]>
+                            <Parameter expression="[HEART_RATE]"/>
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartText x="0" y="240" width="410" height="30">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#00FF00">  luka</Font>
+                    <Font family="monospace" size="24" color="#00FF00">@</Font>
+                    <Font family="monospace" size="24" color="#00FF00">lukawatch  </Font>
+                    <Font family="monospace" size="24" color="#00FF00">~  </Font>
+                </Text>
+            </PartText>
+            <PartImage x="0" y="240" width="30" height="30">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Image resource="paw_prints_color"/>
+            </PartImage>
+            <PartImage x="225" y="240" width="30" height="25">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Image resource="dragon_color"/>
+            </PartImage>
+            <PartText x="0" y="270" width="410" height="30">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Text align="START">
+                    <Font family="monospace" size="24" color="#FFFFFF">|   </Font>
+                    <Font family="monospace" size="24" color="#FFFFFF">
+                        <Template>
+                            <![CDATA[%s]]>
+                            <Parameter expression='([SECOND] % 2) == 0 ? "█" : ""' />
+                        </Template>
+                    </Font>
+                </Text>
+            </PartText>
+            <PartImage x="15" y="273" width="25" height="25">
+                <Variant mode="AMBIENT" target="alpha" value="0"/>
+                <Image resource="dragon_face_color"/>
+            </PartImage>
+        </Group>
+        <ComplicationSlot
+            x="168" y="365"
+            width="75" height="75"
+            slotId="0"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <DefaultProviderPolicy
+                primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
+                primaryProviderType="SMALL_IMAGE"
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="SMALL_IMAGE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="SMALL_IMAGE">
+                <Condition>
+                    <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
+                    <Expressions>
+                        <Expression name="smallImage_icon">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+                        </Expression>
+                        <Expression name="smallImage_photo">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+                        </Expression>
+                    </Expressions>
+                    <Compare expression="smallImage_icon">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                    <Compare expression="smallImage_photo">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+            </Complication>
+        </ComplicationSlot>
+        <ComplicationSlot
+            x="230" y="353"
+            width="75" height="75"
+            slotId="1"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <DefaultProviderPolicy
+                primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
+                primaryProviderType="SMALL_IMAGE"
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="SMALL_IMAGE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="SMALL_IMAGE">
+                <Condition>
+                    <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
+                    <Expressions>
+                        <Expression name="smallImage_icon">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+                        </Expression>
+                        <Expression name="smallImage_photo">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+                        </Expression>
+                    </Expressions>
+                    <Compare expression="smallImage_icon">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                    <Compare expression="smallImage_photo">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+            </Complication>
+        </ComplicationSlot>
+        <ComplicationSlot
+            x="287" y="325"
+            width="75" height="75"
+            slotId="2"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <DefaultProviderPolicy
+                primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
+                primaryProviderType="SMALL_IMAGE"
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="SMALL_IMAGE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="SMALL_IMAGE">
+                <Condition>
+                    <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
+                    <Expressions>
+                        <Expression name="smallImage_icon">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+                        </Expression>
+                        <Expression name="smallImage_photo">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+                        </Expression>
+                    </Expressions>
+                    <Compare expression="smallImage_icon">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                    <Compare expression="smallImage_photo">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+            </Complication>
+        </ComplicationSlot>
+        <ComplicationSlot
+            x="330" y="280"
+            width="75" height="75"
+            slotId="3"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <DefaultProviderPolicy
+                primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
+                primaryProviderType="SMALL_IMAGE"
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="SMALL_IMAGE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="SMALL_IMAGE">
+                <Condition>
+                    <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
+                    <Expressions>
+                        <Expression name="smallImage_icon">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+                        </Expression>
+                        <Expression name="smallImage_photo">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+                        </Expression>
+                    </Expressions>
+                    <Compare expression="smallImage_icon">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                    <Compare expression="smallImage_photo">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+            </Complication>
+        </ComplicationSlot>
+        <ComplicationSlot
+            x="106" y="353"
+            width="75" height="75"
+            slotId="4"
+            name="bottom_complication" displayName="Bottom"
+            supportedTypes="PHOTO_IMAGE SMALL_IMAGE">
+            <Variant mode="AMBIENT" target="alpha" value="0"/>
+            <DefaultProviderPolicy
+                primaryProvider="com.google.android.wearable.weather/com.google.android.wearable.weather.complications.WeatherProviderService"
+                primaryProviderType="SMALL_IMAGE"
+                defaultSystemProvider="APP_SHORTCUT"
+                defaultSystemProviderType="SMALL_IMAGE"
+                />
+            <BoundingOval x="0" y="0" width="112" height="112" outlinePadding="2" />
+            <Complication type="SMALL_IMAGE">
+                <Condition>
+                    <!-- IMAGE_STYLE values: 1 = PHOTO, 2 = ICON -->
+                    <Expressions>
+                        <Expression name="smallImage_icon">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 2]]>
+                        </Expression>
+                        <Expression name="smallImage_photo">
+                            <![CDATA[[COMPLICATION.SMALL_IMAGE] != null && [COMPLICATION.IMAGE_STYLE] == 1]]>
+                        </Expression>
+                    </Expressions>
+                    <Compare expression="smallImage_icon">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                    <Compare expression="smallImage_photo">
+                        <PartImage x="24" y="24" width="64" height="64" alpha="255">
+                            <Variant mode="AMBIENT" target="alpha" value="0" />
+                            <Image resource="[COMPLICATION.SMALL_IMAGE]" />
+                        </PartImage>
+                    </Compare>
+                </Condition>
+            </Complication>
+        </ComplicationSlot>
+    </Scene>
+</WatchFace>
